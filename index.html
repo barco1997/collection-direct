@@ -7,36 +7,185 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="static/reset.css" />
-    <link rel="stylesheet" type="text/css" href="static/style.css?v=0.10" />
+    <link rel="stylesheet" type="text/css" href="static/style.css?v=0.11" />
     <script defer src="static/fontawesome/js/all.js"></script>
-    <script type="text/javascript" src="static/script.js?v=0.10"></script>
+    <script type="text/javascript" src="static/script.js?v=0.11"></script>
     <meta charset="utf-8" />
   </head>
 
   <body>
+    <div id="pop-up-wrapper">
+      <div class="pop-up-overlay" onclick="closeWindow()">
+        <div
+          class="success-message"
+          id="success-message"
+          onclick="stopOnclick(event)"
+        >
+          <div class="success-message-header-wrapper">
+            <div class="dove-wrapper">
+              <i class="fal fa-dove fa-xs"></i>
+            </div>
+            <div class="success-message-header">
+              Отправлено
+            </div>
+          </div>
+          <div class="success-message-text" id="success-message-text"></div>
+          <div class="success-message-button" onclick="closeWindow()">
+            <div class="check-wrapper">
+              <i class="fal fa-check fa-xs"></i>
+            </div>
+            <div class="success-message-button-text">
+              Отлично
+            </div>
+          </div>
+        </div>
+        <div
+          class="pop-up-window"
+          id="pop-up-window"
+          onclick="stopOnclick(event)"
+        >
+          <div id="close-button-wrapper" onclick="closeWindow()">
+            <span id="close-button"></span>
+          </div>
+          <div id="form-wrapper">
+            <form id="form_id" method="post" name="myForm">
+              <div class="form-header">Знакомство</div>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="name-input"
+                  name="name"
+                  placeholder="Ваше имя"
+                  oninput="handleChangeName()"
+                />
+                <div id="name-icon" class="form-icon-wrapper">
+                  <i class="fal fa-user-alt fa-xs"></i>
+                </div>
+              </div>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="organisation-input"
+                  name="organisation"
+                  placeholder="Название организации"
+                  oninput="handleChangeOrganisation()"
+                />
+                <div id="organisation-icon" class="form-icon-wrapper">
+                  <i class="fal fa-university fa-xs"></i>
+                </div>
+              </div>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="mail-input"
+                  name="mail"
+                  placeholder="Email"
+                  oninput="handleChangeEmail()"
+                />
+                <div id="mail-icon" class="form-icon-wrapper">
+                  <i class="fal fa-envelope fa-xs"></i>
+                </div>
+              </div>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="telephone-input"
+                  name="telephone"
+                  placeholder="Номер телефона (с кодом)"
+                  oninput="handleChangePhone()"
+                />
+                <div id="phone-icon" class="form-icon-wrapper">
+                  <i class="fal fa-mobile fa-xs"></i>
+                </div>
+              </div>
+
+              <div class="textarea-wrapper">
+                <textarea
+                  id="description-input"
+                  name="description"
+                  placeholder="Текст сообщения"
+                  oninput="handleChangeDescription()"
+                ></textarea>
+                <div id="description-icon" class="form-icon-wrapper">
+                  <i class="fal fa-pen fa-xs"></i>
+                </div>
+              </div>
+              <div class="form-button-wrapper">
+                <div class="button-wrapper">
+                  <div
+                    id="submit-button"
+                    type="submit"
+                    class="form-button"
+                    onclick="return validateForm()"
+                  >
+                    <div id="button-icon" class="button-icon">
+                      <i
+                        id="font-awesome-button"
+                        class="fal fa-envelope-open fa-xs"
+                      ></i>
+                    </div>
+                    <div id="button-icon-ready" class="button-icon-ready">
+                      <i
+                        id="font-awesome-button"
+                        class="fal fa-envelope-open-text fa-xs"
+                      ></i>
+                    </div>
+                    <span class="button-send-text"> Отправить</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="page-wrapper">
       <div id="layout-wrapper">
-        <div class="main-logo-wrapper">
+        <div id="main-logo-wrapper" class="main-logo-wrapper fade-out">
           <img id="logo" src="static/collection.png" />
         </div>
         <div class="middle-text-wrapper">
-          <span>Art Management Solutions</span>
+          <span id="middle-text" class="middle-text fade-in"
+            >Art Management Solutions</span
+          >
           <div class="logo-list">
-            <img class="logo-list-item" src="static/mymuseum.png" />
+            <img
+              id="mymuseum-logo"
+              class="logo-list-item fade-in"
+              src="static/mymuseum.png"
+            />
             <img
               id="gallerist-logo"
-              class="logo-list-item"
+              class="logo-list-item fade-in"
               src="static/gallerist.png"
             />
-            <img class="logo-list-item" src="static/collectionholder.png" />
-            <img class="logo-list-item" src="static/collectionholder.png" />
+            <img
+              id="private-logo"
+              class="logo-list-item fade-in"
+              src="static/collectionholder.png"
+            />
+            <img
+              id="artist-logo"
+              class="logo-list-item fade-in"
+              src="static/collectionholder.png"
+            />
           </div>
-          <div class="growing-icon">
+          <div
+            id="growing-icon"
+            class="growing-icon fade-in"
+            onclick="openWindow()"
+          >
             <i class="fal fa-envelope-open-text fa-xs"></i>
           </div>
         </div>
       </div>
-      <div class="footer">© Collection.Direct 2011 - 2019</div>
+      <div id="footer" class="footer fade-in">
+        © Collection.Direct 2011 - 2019
+      </div>
     </div>
   </body>
 </html>
